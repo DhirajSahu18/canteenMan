@@ -30,7 +30,7 @@ connectToDatabase();
 
 // API Endpoints
 app.get("/", (req, res) => res.status(200).send("Hello World!"));
-app.post("/login" , async (req , res) => {
+app.post("/login", async (req, res) => {
   try {
     const { username, password } = req.body;
     if (username === "admin" && password === "admin") {
@@ -55,63 +55,4 @@ import Menu from "./Models/menu.model.js";
 app.use("/menu", menuRoutes);
 app.use("/orders", orderRoutes);
 
-// function to fill in 1 record in the menu collection
-const fillMenu = async () => {
-  try {
-    const menu = await Menu.findOne();
-    if (!menu) {
-      const newMenu = new Menu({
-        breakfast: [
-          {
-            name: "Poha",
-            price: 15,
-            description: "Maharashtra's famous breakfast dish",
-            image: "https://i.imgur.com/2nYXt2z.jpg",
-            feedback: [
-              {
-                name: "John Doe",
-                rating: 5,
-                comment: "Great breakfast roll!",
-              },
-            ],
-          },
-        ],
-        lunch: [
-          {
-            name: "Dal Rice",
-            price: 30,
-            description:
-              "Soothing daal and rice to give homely feel",
-            image: "https://i.imgur.com/2nYXt2z.jpg",
-            feedback: [
-              {
-                name: "Jane Doe",
-                rating: 4,
-                comment: "Homely and delicious!",
-              },
-            ],
-          },
-        ],
-        beverages: [
-          {
-            name: "Tea",
-            price: 10,
-            description: "Hot tea to refresh your mood",
-            image: "https://i.imgur.com/2nYXt2z.jpg",
-            feedback: [
-              {
-                name: "John Doe",
-                rating: 5,
-                comment: "Great drink!",
-              },
-            ],
-          },
-        ],
-      });
-      await newMenu.save();
-      console.log("Menu filled with data");
-    }
-  } catch (error) {
-    console.error("Error filling menu:", error);
-  }
-};
+
